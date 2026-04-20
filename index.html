@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Cecil Balugo Portfolio</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(135deg, #0a0f1c, #02050a);
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    nav {
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 12px 10px;
+      font-weight: bold;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00d4ff;
+    }
+
+    main {
+      margin-top: 70px;
+      min-height: 100vh;
+      padding: 20px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    section {
+      display: none;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .home img {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border: 3px solid #00d4ff;
+      margin: 20px 0;
+      box-shadow: 0 0 25px rgba(0,212,255,0.6);
+    }
+
+    .home h1 {
+      font-size: 1.6em;
+      margin-bottom: 10px;
+    }
+
+    .home p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #aaa;
+      padding: 0 10px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .cv-btn {
+      display: inline-block;
+      margin: 10px 0 15px 0; 
+      padding: 12px 20px;
+      background: #00d4ff;
+      color: #000;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .cv-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #00d4ff;
+    }
+
+    .projects-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-top: 25px;
+      width: 100%;
+    }
+
+    .project-card {
+      margin-top: 10px;
+      margin-bottom: 15px; 
+      background: rgba(255,255,255,0.05);
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,212,255,0.2);
+      display: inline-block;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .project-card p {
+      margin-top: 10px;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .sample-output a {
+      text-align: left;
+      display: block;
+      margin: 10px 0;
+      color: #00d4ff;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .sample-output a:hover {
+      color: #fff;
+    }
+
+    .sample-output h2 {
+      text-align: left;
+    }
+
+    .tutorials iframe {
+      width: 100%;
+      max-width: 500px;
+      height: 200px;
+      border-radius: 10px;
+      margin: 15px auto;
+      display: block;
+    }
+
+    .tutorials p {
+      color: #00d4ff;
+      margin-top: 5px;
+    }
+
+    footer {
+      background: rgba(255,255,255,0.05);
+      padding: 30px 20px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 500px;
+    }
+
+    footer h2 {
+      color: #00d4ff;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .social-icons img {
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .contact-form textarea {
+      height: 120px;
+      resize: none;
+    }
+
+    .contact-form button {
+      background: #00d4ff;
+      color: #000;
+      font-weight: bold;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 5px;
+    }
+
+    .contact-form button:hover {
+      background: #00b8e6;
+      box-shadow: 0 0 10px #00d4ff;
+    }
+
+    .chat-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #00d4ff;
+      color: #000;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0,212,255,0.5);
+      z-index: 1000;
+      transition: 0.3s;
+    }
+
+    .chat-btn:hover { transform: scale(1.1); }
+
+    .chat-popup {
+      display: none;
+      position: fixed;
+      bottom: 85px;
+      right: 20px;
+      width: 300px;
+      background: rgba(10, 15, 28, 0.98);
+      border: 1px solid #00d4ff;
+      border-radius: 12px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+      z-index: 1000;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: #00d4ff;
+      color: #000;
+      padding: 12px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-messages {
+      height: 260px;
+      padding: 15px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .msg { padding: 10px; border-radius: 10px; max-width: 85%; line-height: 1.4; }
+    .bot-msg { background: rgba(255,255,255,0.1); color: #fff; align-self: flex-start; }
+    .user-msg { background: #00d4ff; color: #000; align-self: flex-end; }
+
+    .chat-input-area {
+      display: flex;
+      padding: 10px;
+      background: #0a0f1c;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #fff;
+      outline: none;
+    }
+
+    .chat-input-area button { margin-top: 0; margin-left: 8px; padding: 5px 12px; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#" onclick="showSection('home', event)">Home</a>
+  <a href="#" onclick="showSection('projects', event)">Projects</a>
+  <a href="#" onclick="showSection('tutorials', event)">Tutorials</a>
+  <a href="#" onclick="showSection('contact', event)">Contact</a>
+</nav>
+
+<main>
+
+<section id="home" class="home active">
+  <h1>Welcome to My Portfolio!</h1>
+
+  <img src="Messenger_creation_35A096E5-A174-4AB6-A839-11B3B882EDC5.jpeg" alt="Cecil Balugo">
+  <br>
+  <a href="CV_20260420_085231_0000.pdf" download class="cv-btn">Download CV</a>
+
+  <p>I'm <strong>Cecil Dela Cruz Balugo</strong>, a passionate student and I embrace technology, enjoy learning new skills, and love exploring new things that expand my knowledge and creativity. This portfolio showcases my projects, creativity, and growth throughout my learning journey. I aim to combine creativity and functionality in every work I create. Feel free to explore and see what I’ve been working on!</p>
+</section>
+
+<section id="projects">
+  <h2>My Projects</h2>
+
+  <div class="projects-container">
+    <div class="project-card">
+      <a href="https://drive.google.com/file/d/1-he4DmkAUxV8oewpM3ok2Ze1W9RpUpDa/view?usp=drivesdk">
+        <img src="Screenshot_20251020-153640~2.png">
+      </a>
+      <p>T-shirt Layout Design</p>
+    </div>
+
+    <div class="project-card">
+      <a href="https://drive.google.com/file/d/1eFfzbcuFhnvcAk7Z559KxUod0NZ2bIgu/view?usp=drivesdk">
+        <img src="Screenshot_20251020-153746~2.png">
+      </a>
+      <p>Product Design</p>
+    </div>
+
+    <div class="project-card">
+      <a href="https://www.figma.com/proto/Xee7CqGC4ImPdloNqXIrXo/Untitled">
+        <img src="1760950313237_045159.jpg">
+      </a>
+      <p>Celestea - Milktea E-commerce Website</p>
+    </div>
+  </div>
+
+  <div class="sample-output">
+    <h2><br><br>Sample Outputs</h2>
+    <a href="https://www.canva.com/design/DAGvda4WRMY/l-OvRczIO_x4JiytOWJSwA/edit">• Canva Portfolio</a>
+    <a href="https://www.figma.com/proto/2YsClPDM9xaGfyKHkqJZfg/Untitled">• Figma Portfolio</a>
+    <a href="https://drive.google.com/drive/folders/11Gq1KRh3_nTLupa0T8KkRUc2PleTbgMU">• Schematic Diagram</a>
+    <a href="https://www.figma.com/proto/u69rMyeQv36dKukTDdeokr/Untitled">• E-commerce Design</a>
+
+    <h2><br>Certificates</h2>
+    <div class="project-card">
+    <a href="https://drive.google.com/file/d/1VT8GTxs5AvOzxIhDWknnpEtFcpaQv5sy/view?usp=drivesdk">
+      <img src="IMG_20260408_110515.jpg">
+      <p>IT Seminar: </p>
+    </a>
+    </div>
+    <div class="project-card">
+    <a href="https://drive.google.com/file/d/1VRb1ttojvK-2QFRxAkNIiGp8GFn4Zu7S/view?usp=drivesdk">
+      <img src="IMG_20260408_110616.jpg">
+      <p>IT Seminar: Cisco Networking Fundamentals</p>
+    </a>
+    </div>
+    <div class="project-card">
+    <a href="https://drive.google.com/file/d/1VO_NQf2WLXacT_Hbj0f3rj1pAO8-0Gse/view?usp=drivesdk">
+      <img src="IMG_20260408_110649~2.jpg">
+      <p>IT Seminar: Integrative Foundation for Innovative and Systematic Solution</p>
+    </a>
+    </div>
+  </div>
+</section>
+
+<section id="tutorials" class="tutorials">
+  <h2>Video Tutorials</h2>
+  <iframe src="https://www.youtube.com/embed/JuqDZgLxNiQ"></iframe>
+  <p>Photoshop</p>
+  <iframe src="https://www.youtube.com/embed/z7QVI2Ju98A"></iframe>
+  <p>Figma</p>
+  <iframe src="https://www.youtube.com/embed/10O-VOjb7xA"></iframe>
+  <p>Github</p>
+</section>
+
+<section id="contact">
+  <footer>
+    <h2>Contact Us</h2>
+    <div class="social-icons">
+      <img src="2021_Facebook_icon.svg.png">
+      <img src="2048px-Instagram_icon.png">
+      <img src="gmail-logo-on-transparent-white-background-free-vector.jpg">
+      <img src="c4198af08cbf6b66b043b30748676ade.jpg">
+    </div>
+    
+    <form action="https://formspree.io/f/mrerkvka" method="POST" class="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="text" name="subject" placeholder="Subject" required>
+      <textarea name="message" placeholder="What message would you like to send?" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </footer>
+</section>
+
+</main>
+
+<div class="chat-btn" onclick="toggleChat()">💬</div>
+
+<div class="chat-popup" id="chatPopup">
+  <div class="chat-header">
+    Chat with Cecil
+    <span style="cursor:pointer" onclick="toggleChat()">✖</span>
+  </div>
+  <div class="chat-messages" id="chatBox">
+    <div class="msg bot-msg">Hi! I'm Cecil. Feel free to ask me anything about my work or my journey!</div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="userInput" placeholder="Ask me something..." onkeypress="if(event.key==='Enter')sendMessage()">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+function showSection(id, event) {
+  event.preventDefault();
+  document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function toggleChat() {
+  const popup = document.getElementById("chatPopup");
+  popup.style.display = popup.style.display === "flex" ? "none" : "flex";
+}
+
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const text = input.value.trim();
+  if (!text) return;
+
+  appendMessage(text, "user-msg");
+  input.value = "";
+
+  setTimeout(() => {
+    const response = getBotResponse(text.toLowerCase());
+    appendMessage(response, "bot-msg");
+  }, 400);
+}
+
+function appendMessage(text, className) {
+  const chatBox = document.getElementById("chatBox");
+  const div = document.createElement("div");
+  div.className = `msg ${className}`;
+  div.innerText = text;
+  chatBox.appendChild(div);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function getBotResponse(input) {
+  if (input.includes("name") || input.includes("who are you")) {
+    return "I'm Cecil Dela Cruz Balugo! Nice to meet you.";
+  } 
+  else if (input.includes("tell me more") || input.includes("about yourself")) {
+    return "I am a student who is deeply passionate about technology. I love learning new skills and combining my creativity with functionality in everything I build.";
+  } 
+  else if (input.includes("project") || input.includes("work") || input.includes("interesting")) {
+    return "I've worked on some exciting projects! Some of my favorites are 'Celestea' (my Milktea E-commerce site), T-shirt layouts, and various product designs. You can see them all in my Projects section.";
+  } 
+    else if (input.includes("contact") || input.includes("social") || input.includes("message")) {
+    return "You can reach out to me through my Facebook, Instagram, or Gmail icons in the Contact section!";
+  } 
+    else if (input.includes("cv") || input.includes("resume") || input.includes("download")) {
+    return "You can download my CV directly from my Home page! I've also linked my certificates in the Projects area.";
+  } 
+    else if (input.includes("tutorial") || input.includes("video") || input.includes("learn")) {
+    return "I love sharing what I learn! I've made video tutorials for Photoshop, Figma, and GitHub. You can find them in the Tutorials section.";
+  } 
+    else if (input.includes("hello") || input.includes("hi")) {
+    return "Hello! How can I help you today?";
+  }
+    else if (input.includes("software") || input.includes("tools") || input.includes("skills") || input.includes("know how to use")) {
+    return "Based on my projects, I am experienced with Figma, Canva, Adobe Photoshop, and GitHub. I even have video tutorials on Photoshop, Figma, and GitHub right here on my site!";
+  }
+  else {
+    return "Feel free to ask about my projects, skills, or how to contact me!";
+  }
+}
+</script>
+
+</body>
+</html>
